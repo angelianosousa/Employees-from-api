@@ -12,22 +12,28 @@
   <% end %>
 
   <div class='row'>
-    <div class='col-sm-4'>
+    <div class='col-sm-2'>
       <div class='form-group'>
         <%= form.label :title %>
-        <%= form.text_field :title, class:"form-control" %>
+        <%= form.select :title, options_for_select(["Mr", "Mrs"]), {}, {class:"custom-select"} %>
       </div>
     </div>
-    <div class='col-sm-4'>
+    <div class='col-sm-3'>
       <div class='form-group'>
         <%= form.label :firstname %>
         <%= form.text_field :firstname, class:"form-control" %>
       </div>
     </div>
-    <div class='col-sm-4'>
+    <div class='col-sm-3'>
       <div class='form-group'>
         <%= form.label :lastname %>
         <%= form.text_field :lastname, class:"form-control" %>
+      </div>
+    </div>
+    <div class='col-sm-4'>
+      <div class='form-group'>
+        <%= form.label :email %>
+        <%= form.email_field :email, class:"form-control", placeholder:"example@gmail.com" %>
       </div>
     </div>
   </div>
@@ -35,14 +41,16 @@
   <div class='row'>
     <div class='col-sm-6'>
       <div class='form-group'>
-        <%= form.label :email %>
-        <%= form.email_field :email, class:"form-control" %>
+        <%= form.label :gender %>
+        <%= form.select :gender, options_for_select(["Male", "Female"]), {}, {class:"custom-select"} %>
       </div>
     </div>
     <div class='col-sm-6'>
       <div class='form-group'>
-        <%= form.label :gender %>
-        <%= form.select :gender, options_for_select(["Male", "Female"]), {}, {class:"form-control"} %>
+        <div class='custom-file' style='margin-top: 32px;'>
+          <%= form.file_field :avatar, class:"custom-file-input", id:"customFile" %>
+          <%= form.label :choose_picture, class:"custom-file-label", id:"customFileLang" %>
+        </div>
       </div>
     </div>
   </div>

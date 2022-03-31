@@ -3,7 +3,7 @@ class EmployeesController < ApplicationController
   before_action :set_employees_for_api, only: %i[getting_data_for_api]
 
   def index
-    @employees = Employee.all.page(params[:page])
+    @employees = Employee.order(id: :desc).page(params[:page])
   end
 
   def new
@@ -15,6 +15,7 @@ class EmployeesController < ApplicationController
 
   def create
     @employee = Employee.new(employee_params)
+    @employee.avatar = params[:file]
     if @employee.save
       redirect_to @employee, notice: "Employee was created successfully"
     else
@@ -44,6 +45,7 @@ class EmployeesController < ApplicationController
   end
 
   def destroy
+    @employee.remove_avatar!
     @employee.destroy
 
     redirect_to employees_url, notice: "Employee was successfully destroyed."
@@ -63,6 +65,6 @@ class EmployeesController < ApplicationController
   end
 
   def employee_params
-    params.require(:employee).permit(:title, :firstname, :lastname, :email, :gender)
+    params.require(:employee).permit(:title, :firstname, :lastname, :email, :gender, :avatar)
   end
 end

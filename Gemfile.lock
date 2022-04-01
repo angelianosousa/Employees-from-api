@@ -234,6 +234,8 @@ GEM
       unf_ext
     unf (0.1.4-java)
     unf_ext (0.0.8.1)
+    unf_ext (0.0.8.1-x64-mingw32)
+    unf_ext (0.0.8.1-x86-mingw32)
     web-console (3.7.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -277,7 +279,7 @@ DEPENDENCIES
   webpacker (~> 4.0)
 
 RUBY VERSION
-   ruby 2.7.0p0
+   ruby 2.7.5p203
 
 BUNDLED WITH
-   2.1.2
+   2.3.9

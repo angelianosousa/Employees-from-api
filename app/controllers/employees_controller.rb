@@ -4,6 +4,8 @@ class EmployeesController < ApplicationController
 
   def index
     @employees = Employee.order(id: :desc).page(params[:page])
+    # @keyword = Employee.ransack(firstname_or_lastname: params[:keyword])
+    # @employees = @keyword.result(distinct: true).page(params[:page])
   end
 
   def new

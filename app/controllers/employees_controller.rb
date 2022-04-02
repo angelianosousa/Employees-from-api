@@ -17,18 +17,18 @@ class EmployeesController < ApplicationController
     @employee = Employee.new(employee_params)
     @employee.avatar = params[:file] if params[:file]
     if @employee.save
-      redirect_to employees_path, status: :created, notice: "Employee was created successfully"
+      redirect_to employees_path, notice: "Employee was created successfully"
     else
-      render :new, status: :unprocessable_entity
+      render :new
     end
   end
 
   def update
     @employee.avatar = params[:file] if params[:file]
     if @employee.update(employee_params)
-      redirect_to employees_path, status: :ok, notice: "Employee was successfully updated"
+      redirect_to employees_path, notice: "Employee was successfully updated"
     else
-      render :edit, status: :unprocessable_entity
+      render :edit
     end
   end
 
@@ -46,15 +46,15 @@ class EmployeesController < ApplicationController
       new_employee.save!
     end
 
-    redirect_to root_path, status: :ok, notice: "Data was saved successfully"
+    redirect_to root_path, notice: "Data was saved successfully"
   end
 
   def destroy
     @employee.remove_avatar! if @employee.avatar? # To destroy the picture from employee
     if @employee.destroy
-      redirect_to employees_url, status: :no_content, notice: "Employee was successfully destroyed."
+      redirect_to employees_path, notice: "Employee was successfully destroyed."
     else
-      redirect_to employees_url, status: :not_found, notice: "There's no employee with this id"
+      redirect_to employees_path, error: "There's no employee with this id"
     end
   end
 

@@ -13,4 +13,4 @@ require("turbolinks").start()
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
-import "jquery/dist/jquery.min"
+import "jquery/dist/jquery.min";

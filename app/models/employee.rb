@@ -3,7 +3,7 @@ class Employee < ApplicationRecord
 
   paginates_per 12
 
-  validates :title, :email, :gender, presence: true
+  validates :email, :firstname, :lastname, presence: true
 
   def full_name
     "#{self.title} #{self.firstname} #{self.lastname}"

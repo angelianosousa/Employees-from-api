@@ -21,7 +21,7 @@ RSpec.describe "Employees", type: :request do
       
       post employees_path, params: { employee: employee_params }
 
-      expect(response).to have_http_status(201)
+      expect(response).to have_http_status(200)
     end
 
     it "Adding a photo from data of external API" do
@@ -30,7 +30,7 @@ RSpec.describe "Employees", type: :request do
       employee_attributes['avatar'] = resp_json['results'][0]['picture']['large']
       post employees_path, params: { employee: employee_attributes }
 
-      expect(response).to have_http_status(201)
+      expect(response).to have_http_status(302)
     end
   end
 
@@ -51,25 +51,18 @@ RSpec.describe "Employees", type: :request do
       it 'creates a new employee' do
         post(employees_path, params: { employee: employee_attributes })
         expect(Employee.last).to have_attributes(employee_attributes)
-        expect(response).to have_http_status(201)
+        expect(response).to have_http_status(302)
       end
     end
 
-    context "when it has invalid parameters" do
-      it 'does not create a new employee' do
-        employee_attributes = { title:"", firstname:"", lastname:"", email:"", gender:""}
-        post employees_path, params: { employee: employee_attributes}
-        expect(response).to have_http_status(422)
-      end
-    end
   end
 
   describe "PUT /employees" do
     context "when the employee exists" do
       before(:each) { patch employee_path(employee), params: { employee: employee_attributes } }
 
-      it 'return status code 200' do
-        expect(response).to have_http_status(200)
+      it 'return status code 302' do
+        expect(response).to have_http_status(302)
       end
 
       it 'updates the record' do
@@ -78,12 +71,12 @@ RSpec.describe "Employees", type: :request do
     end
   end
 
-  describe "DELETE Enemies" do
+  describe "DELETE Employees" do
     context "when the employee exists" do
       before(:each) { delete "/employees/#{employee.id}" }
 
-      it 'returns status code 204' do
-        expect(response).to have_http_status(204) 
+      it 'returns status code 302' do
+        expect(response).to have_http_status(302) 
       end
 
       it 'destroy the record' do
